@@ -1,0 +1,9 @@
+bin/
+obj/
+x64/
+*.suo
+Debug/
+Release/
+Build/
+ipch/
+*.sdf
