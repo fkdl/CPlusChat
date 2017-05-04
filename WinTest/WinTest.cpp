@@ -25,10 +25,10 @@ public:
 	{
 		if (uMsg == WM_CREATE) {
 			m_pm.Init(m_hWnd);
-			CControlUI *pButton = new CButtonUI;
-			pButton->SetName(_T("closebtn"));
-			pButton->SetBkColor(0xFFFF0000);
-			m_pm.AttachDialog(pButton);
+			CDialogBuilder builder;
+			CControlUI* pRoot = builder.Create(_T("skin/MainSkin.xml"), (UINT)0, NULL, &m_pm);
+			ASSERT(pRoot && "Failed to parse XML");
+			m_pm.AttachDialog(pRoot);
 			m_pm.AddNotifier(this);
 			return 0;
 		}
