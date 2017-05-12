@@ -2,10 +2,10 @@
 <Window size="494,456">
     <VerticalLayout name="VerticalLayout" enabled="true" width="522" height="455" bkcolor="#FFFFFFFF">
         <Button name="btnConn" text="连接" float="true" pos="370,351,0,0" enabled="true" width="95" height="27" bkcolor="#FF008000" textcolor="#00FFFFFF" disabledtextcolor="#FFA7A6AA" align="center" />
-        <Edit name="edtMsg" bordersize="1" float="true" pos="41,76,0,0" enabled="true" width="425" height="235" bkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
-        <Text name="txtMsg" text="消息" float="true" pos="43,27,0,0" enabled="true" width="86" height="23" textpadding="2,0,2,0" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="centerwrap" />
+        <Edit name="edtMsg" bordersize="3" float="true" pos="43,67,0,0" enabled="true" width="425" height="235" bkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+        <Text name="txtMsg" text="消息" float="true" pos="46,25,0,0" enabled="true" width="86" height="23" textpadding="2,0,2,0" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="centerwrap" />
         <Text name="txtAddr" text="地址" float="true" pos="42,355,0,0" enabled="true" width="65" height="19" textpadding="2,0,2,0" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="centerwrap" />
-        <Edit name="edtAddr" bordersize="1" float="true" pos="124,345,0,0" enabled="true" width="60" height="30" bkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+        <Edit name="edtAddr" bordersize="1" float="true" pos="111,348,0,0" enabled="true" width="60" height="30" bkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
         <Text name="txtPort" text="端口" float="true" pos="197,357,0,0" enabled="true" width="65" height="19" textpadding="2,0,2,0" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="centerwrap" />
         <Edit name="edtPort" bordersize="1" float="true" pos="284,345,0,0" enabled="true" width="60" height="30" bkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
     </VerticalLayout>

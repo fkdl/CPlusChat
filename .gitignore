@@ -1,4 +1,7 @@
-bin/
+bin/*.exe
+bin/*.lik
+bin/*.pdb
+bin/*.dll
 obj/
 x64/
 *.suo
