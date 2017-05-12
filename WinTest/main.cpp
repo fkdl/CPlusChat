@@ -1,4 +1,4 @@
-// WinTest.cpp : 定义应用程序的入口点。
+// main.cpp : 定义应用程序的入口点。
 //
 
 #include "stdafx.h"
@@ -12,14 +12,27 @@ public:
 	UINT GetClassStyle() const { return UI_CLASSSTYLE_FRAME | CS_DBLCLKS; };
 	void OnFinalMessage(HWND /*hWnd*/) { delete this; };
 
+	CPaintManagerUI m_pm;
+	CRichEditUI* edtMsg;
+
 	void Notify(TNotifyUI& msg)
 	{
 		if (msg.sType == _T("click")) {
-			if (msg.pSender->GetName() == _T("closebtn")) {
-				MessageBox(NULL, _T("这是对话框"), _T("你好"), MB_ICONINFORMATION | MB_YESNO);
+			if (msg.pSender->GetName() == _T("btnConn")) {
+				CRichEditUI* edtAddr = static_cast<CRichEditUI*>(m_pm.FindControl(_T("edtAddr")));
+				CRichEditUI* edtPort = static_cast<CRichEditUI*>(m_pm.FindControl(_T("edtPort")));
+				LPCTSTR port = edtPort->GetText();
+				if (!this->IsDigitalStr(port)) {
+					MessageBox(NULL, _T("端口不是数字"), _T("提示"), MB_OK);
+					return;
+				}
+
+				this->GetEdtMsg()->SetText(port);
 			}
 		}
 	}
+
+
 
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
@@ -40,8 +53,19 @@ public:
 		return CWindowWnd::HandleMessage(uMsg, wParam, lParam);
 	}
 
-public:
-	CPaintManagerUI m_pm;
+private:
+	// 获取显示Message的Edit控件
+	CRichEditUI* GetEdtMsg() {
+		if (edtMsg == NULL) {
+			this->edtMsg = static_cast<CRichEditUI*>(m_pm.FindControl(_T("edtMsg")));
+		}
+		return this->edtMsg;
+	};
+	// 判断是否为数字字符串
+	bool IsDigitalStr(LPCTSTR str) {
+		return regex_match(str, regex("^[0-9]+$"));
+	}
+	
 };
 
 
@@ -53,7 +77,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 
 	CFrameWindowWnd* pFrame = new CFrameWindowWnd();
 	if (pFrame == NULL) return 0;
-	pFrame->Create(NULL, _T("测试"), UI_WNDSTYLE_FRAME, WS_EX_WINDOWEDGE);
+	pFrame->Create(NULL, _T("局域网聊天客户端"), UI_WNDSTYLE_FRAME, WS_EX_WINDOWEDGE);
 	pFrame->ShowWindow(true);
 	CPaintManagerUI::MessageLoop();
 
