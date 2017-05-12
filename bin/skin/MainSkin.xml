@@ -5,15 +5,15 @@
     	<Text name="txtMsg" text="消息" padding="5,5,5,5"/>
 
         
-        <Edit name="edtMsg" bordersize="1" bordercolor="#003E3E3E" readonly="true" height="200" textpadding="5,5,0,0" textalign="top"/>
+        <RichEdit name="edtMsg" bordersize="1" bordercolor="#003E3E3E" readonly="true" height="200" textpadding="5,5,0,0" valign="top" text="好好学习"/>
 
-        <HorizontalLayout height="30">
+        <HorizontalLayout height="30" padding="0,5,0,5">
 
-        	<Text name="txtAddr" text="地址" align="center"/>
+        	<label name="txtAddr" text="地址" align="center"/>
 
         	<Edit name="edtAddr" bordersize="1" bordercolor="#003E3E3E" />
 
-        	<Text name="txtPort" text="端口" align="center"/>
+        	<label name="txtPort" text="端口" align="center"/>
 
         	<Edit name="edtPort" bordersize="1" bordercolor="#003E3E3E" />
 
