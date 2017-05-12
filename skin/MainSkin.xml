@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<Window>
-    <VerticalLayout name="VerticalLayout" enabled="true" width="400" height="400">
-        <Button name="btnOpenDir" text="打开目录" float="true" pos="143,342,0,0" enabled="true" width="95" height="26" bkcolor="#FF008000" textcolor="#00FFFFFF" disabledtextcolor="#FFA7A6AA" align="center" />
-        <Edit float="true" pos="101,36,0,0" enabled="true" width="146" height="33" bkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
-        <Progress float="true" pos="59,187,0,0" enabled="true" width="199" height="19" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" min="0" max="100" value="0" hor="true" />
+<Window size="494,456">
+    <VerticalLayout name="VerticalLayout" enabled="true" width="522" height="455" bkcolor="#FFFFFFFF">
+        <Button name="btnConn" text="连接" float="true" pos="370,351,0,0" enabled="true" width="95" height="27" bkcolor="#FF008000" textcolor="#00FFFFFF" disabledtextcolor="#FFA7A6AA" align="center" />
+        <Edit name="edtMsg" bordersize="1" float="true" pos="41,76,0,0" enabled="true" width="425" height="235" bkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+        <Text name="txtMsg" text="消息" float="true" pos="43,27,0,0" enabled="true" width="86" height="23" textpadding="2,0,2,0" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="centerwrap" />
+        <Text name="txtAddr" text="地址" float="true" pos="42,355,0,0" enabled="true" width="65" height="19" textpadding="2,0,2,0" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="centerwrap" />
+        <Edit name="edtAddr" bordersize="1" float="true" pos="124,345,0,0" enabled="true" width="60" height="30" bkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+        <Text name="txtPort" text="端口" float="true" pos="197,357,0,0" enabled="true" width="65" height="19" textpadding="2,0,2,0" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="centerwrap" />
+        <Edit name="edtPort" bordersize="1" float="true" pos="284,345,0,0" enabled="true" width="60" height="30" bkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
     </VerticalLayout>
 </Window>
