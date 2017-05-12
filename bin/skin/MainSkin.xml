@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <Window size="600,450">
-    <VerticalLayout name="VerticalLayout" enabled="true" width="522" height="455" bkcolor="#FFFFFFFF">
+    <VerticalLayout name="VerticalLayout" enabled="true" width="522" height="455" bkcolor="#FFFFFFFF" inset="10,10,10,0">
 
-    	<Text name="txtMsg" text="消息" padding="5,5,5,5"/>
+    	<Text name="txtMsg" text="消息" padding="0,5,0,5"/>
 
         
-        <RichEdit name="edtMsg" bordersize="1" bordercolor="#003E3E3E" readonly="true" height="200" textpadding="5,5,0,0" valign="top" text="好好学习"/>
+        <RichEdit name="edtMsg" bordersize="1" bordercolor="#003E3E3E" readonly="true" height="200" textpadding="5,5,0,0" valign="top"/>
 
         <HorizontalLayout height="30" padding="0,5,0,5">
 
@@ -17,7 +17,7 @@
 
         	<Edit name="edtPort" bordersize="1" bordercolor="#003E3E3E" />
 
-        	<Button name="btnConn" text="连接"  bkcolor="#FF008000" textcolor="#00FFFFFF" align="center" />
+        	<Button name="btnConn" text="连接"  bkcolor="#FF008000" textcolor="#00FFFFFF" align="center" padding="10,0,0,0"/>
         </HorizontalLayout>
 
     </VerticalLayout>
