@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "ChatClient.h"
+#include "MessageLog.h"
 
 // 窗口实例及消息响应部分
 class CFrameWindowWnd : public CWindowWnd, public INotifyUI
@@ -14,7 +15,6 @@ public:
 	void OnFinalMessage(HWND /*hWnd*/) { delete this; };
 
 	CPaintManagerUI m_pm;
-	CRichEditUI* edtMsg;
 
 	void Notify(TNotifyUI& msg)
 	{
@@ -36,6 +36,15 @@ public:
 				int port = atoi(portStr);
 				chatClient->Connect(addr, port);
 			}
+			else if (msg.pSender->GetName() == _T("btnSend")) {
+				CEditUI* edtSendMsg = static_cast<CEditUI*>(m_pm.FindControl(_T("edtSendMsg")));
+				LPCTSTR msg = edtSendMsg->GetText();
+				if (_tcslen(msg) == 0) {
+					MessageBox(NULL, _T("消息不能为空！"), _T("提示"), MB_OK);
+					return;
+				}
+				chatClient->SendMsg(msg);
+			}
 		}
 	}
 
@@ -50,6 +59,7 @@ public:
 			ASSERT(pRoot && "Failed to parse XML");
 			m_pm.AttachDialog(pRoot);
 			m_pm.AddNotifier(this);
+			this->edtLog = static_cast<CRichEditUI*>(m_pm.FindControl(_T("edtLog")));
 			return 0;
 		}
 		else if (uMsg == WM_DESTROY) {
@@ -61,13 +71,6 @@ public:
 	}
 
 private:
-	// 获取显示Message的Edit控件
-	CRichEditUI* GetEdtMsg() {
-		if (edtMsg == NULL) {
-			this->edtMsg = static_cast<CRichEditUI*>(m_pm.FindControl(_T("edtMsg")));
-		}
-		return this->edtMsg;
-	};
 	// 判断是否为数字字符串
 	bool IsDigitalStr(LPCTSTR str) {
 		return regex_match(str, regex("^[0-9]+$"));
@@ -78,7 +81,7 @@ private:
 		return regex_match(str, regex("^([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$"));
 	}
 	ChatClient* chatClient = new ChatClient();
-
+	CRichEditUI* edtLog;
 };
 
 

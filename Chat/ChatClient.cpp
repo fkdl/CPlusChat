@@ -27,7 +27,7 @@ void ChatClient::Connect(LPCTSTR addr, int port)
 	}
 }
 
-void ChatClient::SendMessage(LPCTSTR msg)
+void ChatClient::SendMsg(LPCTSTR msg)
 {
-	send(this->socketClient, msg, strlen(msg), 0);
+	send(this->socketClient, msg, _tcslen(msg), 0);
 }
