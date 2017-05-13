@@ -11,3 +11,4 @@ Build/
 ipch/
 *.sdf
 /lib/*
+/ChatServer/bin
