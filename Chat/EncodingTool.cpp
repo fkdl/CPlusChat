@@ -2,6 +2,10 @@
 
 CHAR* EncodingTool::WideCharToMultiChar(const WCHAR* str)
 {
-	int bufSize = WideCharToMultiByte(CP_ACP, NULL, str, -1, NULL, 0, NULL, FALSE);
-	return new char[bufSize];
+	size_t len = wcslen(str) + 1;
+	size_t converted = 0;
+	CHAR* CStr;
+	CStr = (char*)malloc(len * sizeof(char));
+	wcstombs_s(&converted, CStr, len, str, _TRUNCATE);
+	return CStr;
 }

@@ -8,7 +8,6 @@
 #define _CRT_SECURE_NO_DEPRECATE
 
 #include <windows.h>
-#include <objbase.h>
 #include <regex>
 
 #include "..\DuiLib\UIlib.h"

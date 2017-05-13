@@ -30,5 +30,6 @@ void ChatClient::Connect(LPCTSTR addr, int port)
 
 void ChatClient::SendMsg(LPCTSTR msg)
 {
-	send(this->socketClient, EncodingTool::WideCharToMultiChar(msg), _tcslen(msg), 0);
+	CHAR* buffers = EncodingTool::WideCharToMultiChar(msg);
+	send(this->socketClient, buffers, strlen(buffers), 0);
 }
