@@ -25,7 +25,8 @@ MessageLog::MessageLog(CRichEditUI* edtMsg)
 
 void MessageLog::AddLog(LPCTSTR str)
 {
-	string txt = str + string("\n");
+	wstring addStr = L"\n";
+	wstring txt = str + addStr;
 	this->edtMsg->AppendText(txt.c_str());
 }
 

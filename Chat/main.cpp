@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "ChatClient.h"
 #include "MessageLog.h"
+#include "EncodingTool.h"
 
 // 窗口实例及消息响应部分
 class CFrameWindowWnd : public CWindowWnd, public INotifyUI
@@ -33,7 +34,7 @@ public:
 					MessageBox(NULL, _T("端口不是数字"), _T("提示"), MB_OK);
 					return;
 				}
-				int port = atoi(portStr);
+				int port = _wtoi(portStr);
 				chatClient->Connect(addr, port);
 			}
 			else if (msg.pSender->GetName() == _T("btnSend")) {
@@ -73,12 +74,13 @@ public:
 private:
 	// 判断是否为数字字符串
 	bool IsDigitalStr(LPCTSTR str) {
-		return regex_match(str, regex("^[0-9]+$"));
+		return regex_match(EncodingTool::WideCharToMultiChar(str), regex("^[0-9]+$"));
 	}
 	// 判断是否为IPv4地址
 	bool IsIPv4Addr(LPCTSTR str)
 	{
-		return regex_match(str, regex("^([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$"));
+		return regex_match(EncodingTool::WideCharToMultiChar(str), 
+			regex("^([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$"));
 	}
 	ChatClient* chatClient = new ChatClient();
 	CRichEditUI* edtLog;

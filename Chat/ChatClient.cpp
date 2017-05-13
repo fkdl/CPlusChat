@@ -1,4 +1,5 @@
 #include "ChatClient.h"
+#include "EncodingTool.h"
 
 ChatClient::ChatClient()
 {
@@ -12,7 +13,7 @@ void ChatClient::Connect(LPCTSTR addr, int port)
 	// 新建客户端socket
 	this->socketClient = socket(AF_INET, SOCK_STREAM, 0);
 	// 定义要连接的服务端地址
-	addrServer.sin_addr.S_un.S_addr = inet_addr(addr);
+	addrServer.sin_addr.S_un.S_addr = inet_addr(EncodingTool::WideCharToMultiChar(addr));
 	addrServer.sin_family = AF_INET;
 	addrServer.sin_port = htons(port);// 连接端口6000
 	// 连接到服务端
@@ -29,5 +30,5 @@ void ChatClient::Connect(LPCTSTR addr, int port)
 
 void ChatClient::SendMsg(LPCTSTR msg)
 {
-	send(this->socketClient, msg, _tcslen(msg), 0);
+	send(this->socketClient, EncodingTool::WideCharToMultiChar(msg), _tcslen(msg), 0);
 }
