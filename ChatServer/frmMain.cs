@@ -26,15 +26,33 @@ namespace 自做网络通讯
         private void btnServerConn_Click(object sender, EventArgs e)
         {
             socketwatch = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPAddress ipaddress = IPAddress.Parse(txtIP.Text);
-            int port = Int32.Parse(txtPort.Text);
-            IPEndPoint endpoint =new IPEndPoint(ipaddress,port);
+            IPAddress ipaddress = null;
+            try
+            {
+                ipaddress = IPAddress.Parse(txtIP.Text);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("IPv4地址不合法！");
+                return;
+            }
+            int port = -1;
+            try
+            {
+                port = Int32.Parse(txtPort.Text);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("端口不是整数！");
+                return;
+            }
+            IPEndPoint endpoint = new IPEndPoint(ipaddress, port);
             //监听绑定一个的节点
             socketwatch.Bind(endpoint);
             //将套接字的监听队列长度限制为20
             socketwatch.Listen(20);
             txtMsg.AppendText("开始监听客户端"+"\r\n");
-            watchthread = new Thread(new ThreadStart(looplisten));
+            watchthread = new Thread(new ThreadStart(loopListen));
             //设置为后台线程
             watchthread.IsBackground = true;
             //启动线程
@@ -45,7 +63,7 @@ namespace 自做网络通讯
         //创建一个负责和客户端通信的套接字 
         Socket socConnection = null;
 
-        private void looplisten()
+        private void loopListen()
         {
             while (true)
             {
