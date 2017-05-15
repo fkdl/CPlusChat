@@ -10,7 +10,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace 自做网络通讯
+namespace ChatServer
 {
     public partial class frmMain : Form
     {

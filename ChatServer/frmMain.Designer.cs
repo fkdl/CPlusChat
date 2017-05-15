@@ -1,4 +1,4 @@
-﻿namespace 自做网络通讯
+﻿namespace ChatServer
 {
     partial class frmMain
     {

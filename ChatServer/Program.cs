@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace 自做网络通讯
+namespace ChatServer
 {
     static class Program
     {
