@@ -9,3 +9,13 @@ CHAR* EncodingTool::WideCharToMultiChar(const WCHAR* str)
 	wcstombs_s(&converted, CStr, len, str, _TRUNCATE);
 	return CStr;
 }
+
+CHAR* EncodingTool::UnicodeToUTF8(const WCHAR* wideStr)
+{
+	char* utf8Str = NULL;
+	int charLen = -1;
+	charLen = WideCharToMultiByte(CP_UTF8, 0, wideStr, -1, NULL, 0, NULL, NULL);
+	utf8Str = (char*)malloc(charLen);
+	WideCharToMultiByte(CP_UTF8, 0, wideStr, -1, utf8Str, charLen, NULL, NULL);
+	return utf8Str;
+}
