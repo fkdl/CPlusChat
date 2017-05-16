@@ -6,6 +6,9 @@
 #include "MessageLog.h"
 #include "EncodingTool.h"
 
+// 静态字段初始化
+CRichEditUI* MessageLog::edtLog = NULL;
+
 // 窗口实例及消息响应部分
 class CFrameWindowWnd : public CWindowWnd, public INotifyUI
 {
@@ -60,7 +63,7 @@ public:
 			ASSERT(pRoot && "Failed to parse XML");
 			m_pm.AttachDialog(pRoot);
 			m_pm.AddNotifier(this);
-			this->edtLog = static_cast<CRichEditUI*>(m_pm.FindControl(_T("edtLog")));
+			MessageLog::SetLogComponent(static_cast<CRichEditUI*>(m_pm.FindControl(_T("edtLog"))));
 			return 0;
 		}
 		else if (uMsg == WM_DESTROY) {
@@ -83,7 +86,6 @@ private:
 			regex("^([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([1-9]?[0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$"));
 	}
 	ChatClient* chatClient = new ChatClient();
-	CRichEditUI* edtLog;
 };
 
 

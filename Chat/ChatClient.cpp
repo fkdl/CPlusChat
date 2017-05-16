@@ -1,5 +1,7 @@
 #include "ChatClient.h"
 #include "EncodingTool.h"
+#include "MessageLog.h"
+#include <thread>
 
 ChatClient::ChatClient()
 {
@@ -19,12 +21,12 @@ void ChatClient::Connect(LPCTSTR addr, int port)
 	// 连接到服务端
 	if (connect(this->socketClient, (SOCKADDR*)&addrServer, sizeof(SOCKADDR)) == SOCKET_ERROR)
 	{
+		MessageLog::AddLog(_T("connect failed!"));
 		closesocket(this->socketClient);
-		cout << "connect failed!";
 	}
 	else
 	{
-		cout << "connect success!";
+		MessageLog::AddLog(_T("connect success!"));
 	}
 }
 
