@@ -3,6 +3,9 @@
 #include "MessageLog.h"
 #include <thread>
 
+
+#define  MAXBUFLEN 256  
+
 ChatClient::ChatClient()
 {
 }
@@ -26,7 +29,20 @@ void ChatClient::Connect(LPCTSTR addr, int port)
 	}
 	else
 	{
+		// 开启工作线程
+		thread t(&ChatClient::StartRecvFromServer, this);
 		MessageLog::AddLog(_T("connect success!"));
+	}
+}
+
+void ChatClient::StartRecvFromServer()
+{
+	while (true)
+	{
+		int numrcv;
+		CHAR buffer[MAXBUFLEN];
+		numrcv = recv(this->socketClient, buffer, MAXBUFLEN, 0);
+
 	}
 }
 

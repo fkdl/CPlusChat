@@ -15,6 +15,8 @@ public:
 	ChatClient();
 	void Connect(LPCTSTR addr, int port);
 	void SendMsg(LPCTSTR msg);
+	// 从服务器接受数据
+	void StartRecvFromServer();
 
 private:
 	SOCKET socketClient;
