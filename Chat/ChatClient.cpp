@@ -4,7 +4,7 @@
 #include <thread>
 
 
-#define  MAXBUFLEN 256  
+#define  MAXBUFLEN 512  
 
 ChatClient::ChatClient()
 {
@@ -37,11 +37,13 @@ void ChatClient::Connect(LPCTSTR addr, int port)
 
 void ChatClient::StartRecvFromServer()
 {
+	int num = 0;
 	while (true)
 	{
-		int numrcv;
 		CHAR buffer[MAXBUFLEN];
-		numrcv = recv(this->socketClient, buffer, MAXBUFLEN, 0);
+		num = recv(this->socketClient, buffer, MAXBUFLEN, 0);
+		if (num == 0)
+			break;
 
 	}
 }
